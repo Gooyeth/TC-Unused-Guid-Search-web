@@ -182,7 +182,7 @@ $continuous_checked = $continuous ? "checked" : "";
         $result_max_min = $db->query($query_max_min);
 
         if (!$result_max_min) {
-            die("Error querying: " . $query_max_min);
+            die("Error querying: {$query_max_min}");
         }
 
         $row_max_min = mysqli_fetch_row($result_max_min);
@@ -190,7 +190,7 @@ $continuous_checked = $continuous ? "checked" : "";
         $MAX_GUID = $row_max_min[0];
         $MIN_GUID = $row_max_min[1];
 
-        printf("<p class=\"text-center\">Table <strong>`%s`</strong> has MAX(%s) = <strong>%d</strong> and MIN(%s)= <strong>%d</strong></p>", $table, $param, $MAX_GUID, $param, $MIN_GUID);
+        echo "<p class=\"text-center\">Table <strong>`{$table}`</strong> has MAX({$param}) = <strong>{$MAX_GUID}</strong> and MIN({$param})= <strong>{$MIN_GUID}</strong></p>");
 
         $query = sprintf("SELECT %s FROM `%s` WHERE %s >= %d ORDER BY %s ASC", $param, $table, $param, $starting_from, $param);
         $result = $db->query($query);
